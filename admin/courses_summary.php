@@ -41,7 +41,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---header-->
 
 <!---header-->
-<?php include('nav_admin.php'); ?>
+<?php include('nav_admin.php');
+if(isset($_SESSION['isAuth'])){?>
 
 <!---header-->
 <!--bannerslider-->
@@ -184,4 +185,10 @@ $resultx=mysqli_query($connect,$query);
         </div-->
     </div>
 </div>
+<?php
+}
+else{
+    echo '<h1 style="text-align: center">Please Login First!</h1>';
+}
+?>
 </html>

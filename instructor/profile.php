@@ -44,6 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!---header-->
 <?php include('nav_instructor.php');
+if (isset($_SESSION['isAuth'])){
 $instructor_uname = $_SESSION['name'];
 ?>
 
@@ -183,4 +184,10 @@ if(isset($_POST['submit']))
         document.getElementById('img').setAttribute('src',img_src);
     </script>
 </body>
+<?php
+}
+    else{
+        echo '<h1 style="text-align: center">Please Login First!</h1>';
+    }
+?>
 </html>

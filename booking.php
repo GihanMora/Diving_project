@@ -42,13 +42,13 @@ th {text-align: left;}
 function fs(){
     echo "sa";
 }
+
+include('nav.php')
 ?>
 <body>
 
 	<!---header-->
-<?php include('nav.php') ;
-    $name = $_SESSION['name'];
-?>
+
 		<!---header-->
 		<!---banner-->
 			<div class="banner-section">
@@ -56,8 +56,12 @@ function fs(){
 					<h2>Online Booking</h2>
 				</div>
 			</div>
-
-
+    <?php
+    if(isset($_SESSION['isAuth'])){
+    ?>
+    <?php
+    $name = $_SESSION['name'];
+    ?>
 <!--div style="stylesheet" type="text/css" href="css/bootstrap.min.css""-->
 <!--    <a href="booking1.php?val=100"><button>my button</button></a>-->
     <form class="form-horizontal" name="booking" action="booking1.php" id="myform" method="post">
@@ -290,6 +294,11 @@ if($resultset->num_rows>0){
 
 
 </body>
-
+<?php
+}
+else{
+    echo '<h1 style="text-align: center">Please Login First!</h1>';
+}
+?>
 </html>
 

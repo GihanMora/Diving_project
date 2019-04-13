@@ -29,7 +29,7 @@ $conn = new mysqli('localhost','root','','diving_database');
 	        VALUES ('$username','$pswd','$email')";
 	   
 		    if ($conn->query($sql) === TRUE) {
-		     include "../login.html";
+                echo '<script>window.location = "../login.html";</script>';
 		     exit();
 			} else {
 		    echo "Error: " . $sql . "<br>" . $conn->error;

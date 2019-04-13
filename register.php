@@ -39,7 +39,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 <!--div style="stylesheet" type="text/css" href="css/bootstrap.min.css""-->
-
+    <?php
+    if(isset($_SESSION['isAuth'])){
+    ?>
 <form class="form-horizontal" name="registration" action="register.php" method="post">
 
 <br><br>
@@ -258,4 +260,13 @@ if($resultset->num_rows>0){
     var address = '<?php echo( $addr ); ?>' ;
     document.getElementById('Address').innerHTML = address;
 </script>
+
+
+
+<?php
+}
+    else{
+        echo '<h1 style="text-align: center">Please Login First!</h1>';
+    }
+?>
 </html>

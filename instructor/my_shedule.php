@@ -1,19 +1,10 @@
 <?php
 require_once('../calender/bdd.php');
 include('nav_instructor.php');
-$instructor_uname = $_SESSION['name'];
 
-$connect=mysqli_connect('localhost','root','','diving_database');
-$query ="select instructorID from Professionals where username ='$instructor_uname'";
-$resultx=mysqli_query($connect,$query);
-$row=mysqli_fetch_assoc($resultx);
-$instructor_id =  $row['instructorID'];
-//$row = $resultset->fetch_assoc();
-$sql = "SELECT id, title, start, end, color FROM events where instructor_id =$instructor_id";
-$req = $bdd->prepare($sql);
-$req->execute();
 
-$events = $req->fetchAll();
+
+
 
 
 ?>
@@ -57,7 +48,22 @@ $events = $req->fetchAll();
 </head>
 
 <body>
+<?php
+if (isset($_SESSION['isAuth'])){
 
+$instructor_uname = $_SESSION['name'];
+$connect=mysqli_connect('localhost','root','','diving_database');
+$query ="select instructorID from Professionals where username ='$instructor_uname'";
+$resultx=mysqli_query($connect,$query);
+$row=mysqli_fetch_assoc($resultx);
+$instructor_id =  $row['instructorID'];
+//$row = $resultset->fetch_assoc();
+$sql = "SELECT id, title, start, end, color FROM events where instructor_id =$instructor_id";
+$req = $bdd->prepare($sql);
+$req->execute();
+
+$events = $req->fetchAll();
+?>
 
     <!-- Page Content -->
     <div class="container">
@@ -298,5 +304,10 @@ $events = $req->fetchAll();
 </script>
 
 </body>
-
+<?php
+}
+else{
+    echo '<h1 style="text-align: center">Please Login First!</h1>';
+}
+?>
 </html>

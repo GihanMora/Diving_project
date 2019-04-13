@@ -47,7 +47,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!---header-->
 <?php include('nav_admin.php'); ?>
-
+<?php
+if(isset($_SESSION['isAuth'])){
+?>
 <!---header-->
 <!--bannerslider-->
 <div class="header-banner" style="width: 100%;">
@@ -223,4 +225,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <p style="color: white;">Poseidon Diving Centre<br>Galle Road<br>Hikkaduwa<Br>E-mail info@divingsrilanka.com<br>Tel 0094912277294</p>
     </div>
 </div>
+
+
+<?php
+}
+else{
+    echo '<h1 style="text-align: center">Please Login First!</h1>';
+}
+?>
 </html>

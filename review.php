@@ -24,13 +24,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 		<?php include('nav.php') ;
-        $name = $_SESSION['name'];
 		?>
+
 			<div class="banner-section">
 				<div class="container">
 					<h2>Write a Review</h2>
 				</div>
 			</div>
+
+        <?php
+        if(isset($_SESSION['isAuth'])){
+
+        $name = $_SESSION['name'];
+        ?>
     <div class="row">
         <div class="col-lg-8" >
             <form class="form-horizontal"style="margin-top: 50px" name="booking" action="review.php" method="post";>
@@ -50,13 +56,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         $resultx=mysqli_query($connect,$query);
 
                         ?>
-                        <select name="instructor_id" class="form-control input-md" >
+                        <select name="instructor_name" class="form-control input-md" >
                             <option value="general">General Review</option>
                             <?php
                             while($row=mysqli_fetch_assoc($resultx))
                             {
                                 ?>
-                                <option value="<?php echo $row['InstructorID']; ?>"><?php echo $row['Instructor_Name'];?></option>
+                                <option value="<?php echo $row['Instructor_Name']; ?>"><?php echo $row['Instructor_Name'];?></option>
                             <?php }?>
                         </select>
 
@@ -119,15 +125,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 if(isset($_POST['publish']))
 {
     $name= $_POST['name'];
-    $instructor_id= $_POST['instructor_id'];
-    $rate= $_POST['rate'];
+    $instructor_name= $_POST['instructor_name'];
+    if($_POST['rate']){$rate= $_POST['rate'];}
+
+    else{$rate= 5;}
     $review= $_POST['review'];
     $conn = new mysqli('localhost','root','','diving_database');
-    $sql = "INSERT INTO reviews (comment, student_name, instructor_id, rating)
-	        VALUES ('$review','$name','$instructor_id','$rate')";
+    $sql = "INSERT INTO reviews (comment, student_name, instructor_name, rating)
+	        VALUES ('$review','$name','$instructor_name','$rate')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        echo '<script>window.alert("Successfully Added Review")</script>';
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -267,4 +275,10 @@ if($resultset->num_rows>0){
     document.getElementById('name').setAttribute('value',fname);
 
 </script>
+<?php
+}
+else{
+    echo '<h1 style="text-align: center">Please Login First!</h1>';
+}
+?>
 </html>

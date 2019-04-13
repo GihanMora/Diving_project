@@ -3,7 +3,7 @@
 
 session_start();
 
-if (isset($_POST['username']) && $_POST['email'] && $_POST['password']  ) {
+if (isset($_POST['username']) && $_POST['password']  ) {
    
    $username= $_POST['username'];
    $password= $_POST['password'];
@@ -28,7 +28,7 @@ $conn = new mysqli('localhost','root','','diving_database');
 	        VALUES ('$username','$pswd')";
 	   
 		    if ($conn->query($sql) === TRUE) {
-		     include "../login.html";
+                echo '<script>window.location = "../login.html";</script>';
 		     exit();
 			} else {
 		    echo "Error: " . $sql . "<br>" . $conn->error;
