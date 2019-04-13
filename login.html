@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="login.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+	<style>
+		body  {
+    		background-image: url("images/background1.jpg");
+    		background-color: #cccccc;
+		}
+
+		div.a{
+			 text-align: center;
+			 text-shadow: 2px 2px #FF0000;
+			 
+		}
+
+
+		.footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 5%;
+        background-color: #9fcdff;
+        color: black;
+        text-align: center;
+    }
+
+	</style>
+
+</head>
+
+<body>
+	<div class="a">
+
+		<h1><b>Poseidon Diving Centre</b></h1>
+	</div>
+
+
+	<div class="header">
+		<h2>Login</h2>
+	</div>
+
+	<form method="post" action="login.php">
+		<div class="input-group">
+		   <label>User Name</label>
+		   <input type="text" name="username">	
+		</div>
+		<div class="input-group" >
+			<label>Select Role</label>
+			<select  name="role" style="width: 93%;padding: 5px 10px;font-size: 13px;border-radius: 5px;border: 1px solid gray;">
+				<option value="admin">Admin</option>
+				<option value="instructor">Instructor</option>
+				<option value="student">Student</option>
+			</select>
+		</div>
+		<div class="input-group">
+		   <label>Password</label>
+		   <input type="password" name="password">	
+		</div>
+
+		<div class="input-group" style="padding-top: 10px">
+			<!-- <button type="submit" name="login" class="btn" href="rates.php">Login</button> -->
+			<button type="submit" name="login" class="btn">Login</button>
+		</div>
+		<p>
+			Not yet a member? <a href="signup.html">Sign up as Student</a>
+		</p>
+    </form>
+
+               
+
+
+
+
+<div class="footer">
+    <td><strong>&copy; Poseidon Diving Centre</strong> &nbsp; All Rights Reserved. </td>&nbsp;<td>
+    <td><a href="" style="text-decoration-color: black">Feedback</a></td>&nbsp;&nbsp;
+    <td><a href=""style="text-decoration-color: black">Help</a></td>&nbsp;&nbsp;
+    <td> <a href=""style="text-decoration-color: black">Terms</a></td>&nbsp;
+    <a href="#top" class="btn btn-alt"><span class="glyphicon glyphicon-arrow-up"></span></a>
+</div>
+
+
+</body>
+</html>
