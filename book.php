@@ -16,13 +16,27 @@ table, td, th {
 
 th {text-align: left;}
 </style>
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="css/style.css" rel='stylesheet' type='text/css' />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap Core CSS -->
+    <link href="calender/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link href="css/style.css" rel='stylesheet' type='text/css' />
+    <!-- FullCalendar -->
+    <link href='calender/css/fullcalendar.css' rel='stylesheet' />
 </head>
 <body>
 
 </body>
 </html>
 <?php
-
+include('nav.php');
 /*$d=$_GET['d'];*/
 
 $servername="localhost";
@@ -48,21 +62,20 @@ $coursefee=$_POST['fee'];
 
 
 
-$query="INSERT INTO booking (`First Name`, `Last Name`, `Instructor_Name`, `Course_Name`,`Booking Time`,`No of stu`,`Course_Fee`)VALUES('$fname','$lname','$instructor','$course','$start_time','$numofstu','$coursefee')";
+$query="INSERT INTO booking (`First Name`, `Last Name`, `Instructor_Name`, `Course_Name`,`Booking_Time`,`No of stu`,`Course_Fee`)VALUES('$fname','$lname','$instructor','$course','$start_time','$numofstu','$coursefee')";
 
 $query1="INSERT INTO events (`title`, `color`, `start`, `end`, `instructor_id`)VALUES('$fname','#0071c5','$start_time','$end_time',2)";
-$conn2=new mysqli('localhost','root','','calendar');
 
-if(! $conn2 ) {
-    die("Connection failed: " . $conn2->connect_error);
+if(! $conn ) {
+    die("Connection failed: " . $conn->connect_error);
 }
-if ($conn2->query($query1) === TRUE) {
-    echo "New record created successfully";
+if ($conn->query($query1) === TRUE) {
+
 } else {
-    echo "Error: " . $query1 . "<br>" . $conn2->error;
+    echo "Error: " . $query1 . "<br>" . $conn->error;
 }
 if ($conn->query($query)===TRUE) {
-    echo "New record created successfully";
+
     $sql = "SELECT * FROM booking ORDER BY BookingID DESC LIMIT 1";
     $result = mysqli_query($conn,$sql);
 }
@@ -86,9 +99,9 @@ echo "Error: " . $query . "<br>" . $conn->error;
       echo "<tr>";
       echo  "<td>".$row['First Name']."</td>";
       echo "<td>".$row['Last Name']."</td>";
-      echo "<td>".$row['Instructor Name']."</td>";
-      echo "<td>".$row['Course Name']."</td>";
-      echo "<td>".$row['Booking Time']."</td>";
+      echo "<td>".$row['Instructor_Name']."</td>";
+      echo "<td>".$row['Course_Name']."</td>";
+      echo "<td>".$row['Booking_Time']."</td>";
       echo "<td>".$row['No of Stu']."</td>";
       echo "<td>".$row['Course_Fee']."</td>";
       

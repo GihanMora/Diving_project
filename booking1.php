@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="textinput">First Name</label>
                     <div class="col-md-6">
-                        <input  id="first_name" name="first_name"  class="form-control input-md" type="text" value="<?php echo $_GET['f_name']?>" placeholder="first name" required>
+                        <input required id="first_name" name="first_name"  class="form-control input-md" type="text" value="<?php echo $_GET['f_name']?>" placeholder="first name" required>
 
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="textinput">Last Name</label>
                     <div class="col-md-6">
-                        <input id="last_name" name="last_name"  class="form-control input-md" type="text" value="<?php echo $_GET['l_name']?>" placeholder="last name" >
+                        <input required id="last_name" name="last_name"  class="form-control input-md" type="text" value="<?php echo $_GET['l_name']?>" placeholder="last name" >
 
                     </div>
                 </div>
@@ -74,28 +74,28 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="Country">Instructor Name</label>
                     <div class="col-md-6">
-                        <input id="instructor"  class="form-control input-md" value="<?php echo $_GET['val']?>" name="instructor" >
+                        <input required id="instructor"  class="form-control input-md" value="<?php echo $_GET['val']?>" name="instructor" >
 
                     </div>
                 </div>
             <div class="form-group">
                 <label class="col-md-6 control-label" for="textinput">Booking Start Time</label>
                 <div class="col-md-6">
-                    <input id="textinput" name="start_time" type="datetime-local" placeholder="time" class="form-control input-md">
+                    <input required id="textinput" name="start_time" type="datetime-local" placeholder="time" class="form-control input-md">
 
                 </div>
             </div>
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="textinput">Booking End Time</label>
                     <div class="col-md-6">
-                        <input id="textinput" name="end_time" type="datetime-local" placeholder="time" class="form-control input-md">
+                        <input required id="textinput" name="end_time" type="datetime-local" placeholder="time" class="form-control input-md">
 
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="Country">Course Name</label>
                     <div class="col-md-6">
-                        <select id="course" name="course" class="form-control" onchange='onChanged()''>
+                        <select required id="course" name="course" class="form-control" >
                         <option value="PADI Scuba Diver Course">PADI Scuba Diver Course</option>
                         <option value="Open Water Diver Course">Open Water Diver Course</option>
                         <option value="Advanced Open Water Diver Courses">Advanced Open Water Diver Courses</option>
@@ -109,7 +109,7 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="textinput">Number of Students</label>
                     <div class="col-md-6">
-                        <input id="textinput" name="numstu" type="text" placeholder="No of Students" class="form-control input-md">
+                        <input required id="textinput" name="numstu" type="text" placeholder="No of Students" class="form-control input-md">
 
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="textinput">Course Fee</label>
                     <div class="col-md-6">
-                        <input id="textinput" name="fee" type="text" placeholder="" class="form-control input-md" value="" >
+                        <input required id="textinput" name="fee" type="text" placeholder="" class="form-control input-md" value="" >
 
                     </div>
                     <div id="fee"></div>
@@ -128,7 +128,6 @@
                     <label class="col-md-4 control-label" for="button1id"></label>
                     <div class="col-md-8">
                         <button type="submit" class="btn btn-primary" name="submit" value="Submit" id="submit_form">Submit</button>
-                        <button id="button2id" name="button2id" class="btn btn-danger" type="reset">Clear</button>
                     </div>
                 </div>
 
@@ -254,16 +253,7 @@
 </body>
 <div class="footer-section" style="width:100% !important">
     <div class="container">
-        <!--div class="social-icons">
-            <a href="#"><i class="icon1"></i></a>
-            <a href="#"><i class="icon2"></i></a>
-            <a href="#"><i class="icon3"></i></a>
-            <a href="#"><i class="icon4"></i></a>
-        </div-->
         <p style="color: white;">Poseidon Diving Centre<br>Galle Road<br>Hikkaduwa<Br>E-mail info@divingsrilanka.com<br>Tel 0094912277294</p>
-        <!--div class="footer-top">
-            <p>&copy; 2016 Diving Centre . All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
-        </div-->
     </div>
 </div>
 <!-- jQuery Version 1.11.1 -->
@@ -276,26 +266,28 @@
 <script src='calender/js/moment.min.js'></script>
 <script src='calender/js/fullcalendar.min.js'></script>
 
-<script>
+
 
         <?php
         require_once('calender/bdd.php');
-
         $instructor_uname = $_GET['val'];
-
-
         $connect=mysqli_connect('localhost','root','','diving_database');
         $query ="select instructorID from Professionals where username ='$instructor_uname'";
         $resultx=mysqli_query($connect,$query);
         $row=mysqli_fetch_assoc($resultx);
         $instructor_id =  $row['instructorID'];
+
         //$row = $resultset->fetch_assoc();
         $sql = "SELECT id, title, start, end, color FROM events where instructor_id =$instructor_id";
         $req = $bdd->prepare($sql);
         $req->execute();
         $events = $req->fetchAll();
-
+        echo '<pre>'; print_r($events); echo '</pre>';
+        $today=date('Y-m-d');
         ?>
+
+
+<script>
         $(document).ready(function() {
 
             $('#calendar').fullCalendar({
@@ -304,7 +296,7 @@
                     center: 'title',
                     right: 'month,basicWeek,basicDay'
                 },
-                defaultDate: '2016-01-12',
+                defaultDate: '<?php echo $today?>',
                 editable: false,
                 eventLimit: true, // allow "more" link when too many events
                 selectable: false,
