@@ -66,7 +66,8 @@ if(isset($_POST['submit'])){
 $resultx=mysqli_query($connect,$query);
 
 ?>
-<div class="row" style="text-align: center;border:1px solid black;padding-top: 100px;padding-bottom: 100px">
+<div style="padding-right: 20px;padding-top: 20px"><button style="float: right;" onclick="printData()">Print Report</button></div>
+<div  class="row" style="text-align: center;padding-top: 100px;padding-bottom: 100px">
 <div class="col-sm-7">
     <div class="col-sm-9"  style="text-align: left;padding-left: 50px">
         <form class="form" action="courses_summary.php" method="post" id="registrationForm">
@@ -84,7 +85,7 @@ $resultx=mysqli_query($connect,$query);
         </form>
     </div>
     <div class="col-md-8 col-md-offset-2" style="padding: 50px">
-        <table class="table table-striped table-hover table-bordered">
+        <table class="table table-striped table-hover table-bordered" id="printing_div">
 
         <?php
         if($resultx!=null){
@@ -130,7 +131,7 @@ $resultx=mysqli_query($connect,$query);
         </table>
     </div>
 </div>
-    <div class="col-sm-5" style="width: 600px;display: inline-block;">
+    <div class="col-sm-5" style="width: 600px;display: inline-block;" >
         <canvas id="oilChart" ></canvas>
     </div>
 </div>
@@ -191,4 +192,16 @@ else{
     echo '<h1 style="text-align: center">Please Login First!</h1>';
 }
 ?>
+
+<script>
+    function printData()
+    {
+        var divToPrint=document.getElementById("printing_div");
+        newWin= window.open("");
+        newWin.document.write(divToPrint.outerHTML);
+        newWin.print();
+        newWin.close();
+    }
+
+</script>
 </html>

@@ -69,8 +69,11 @@ if(isset($_POST['submit'])){
 $resultx=mysqli_query($connect,$query);
 
 ?>
-<div class="row" style="text-align: center;border:1px solid black;">
+<div style="padding-right: 20px;padding-top: 20px"><button style="float: right;" onclick="printData()">Print Report</button></div>
+
+<div class="row" style="text-align: center;" >
     <div class="col-sm-8 col-sm-offset-2" style="padding-top: 30px">
+
         <div class="col-sm-8"  style="text-align: left;">
             <form class="form" action="bookings_admin.php" method="post" id="registrationForm">
                 <span style="padding-right: 25px;">Filter bookings in duration </span>
@@ -89,11 +92,13 @@ $resultx=mysqli_query($connect,$query);
             <form class="form" action="bookings_admin.php" method="post" id="all">
                 <button  type="submit" name="all">View All Bookings</button>
             </form>
+
         </div>
+
     </div>
     <div class="col-md-8 col-md-offset-2" style="padding: 50px">
 
-        <table class="table table-striped table-hover table-bordered">
+        <table id="printing_div" class="table table-striped table-hover table-bordered">
 
         <?php
         if($resultx!=null){
@@ -163,4 +168,17 @@ else{
     echo '<h1 style="text-align: center">Please Login First!</h1>';
 }
 ?>
+
+
+<script>
+    function printData()
+    {
+        var divToPrint=document.getElementById("printing_div");
+        newWin= window.open("");
+        newWin.document.write(divToPrint.outerHTML);
+        newWin.print();
+        newWin.close();
+    }
+
+</script>
 </html>
