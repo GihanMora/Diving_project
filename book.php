@@ -63,9 +63,10 @@ $coursefee=$_POST['fee'];
 
 
 $query="INSERT INTO booking (`First Name`, `Last Name`, `Instructor_Name`, `Course_Name`,`Booking_Time`,`No of stu`,`Course_Fee`)VALUES('$fname','$lname','$instructor','$course','$start_time','$numofstu','$coursefee')";
-
-$query1="INSERT INTO events (`title`, `color`, `start`, `end`, `instructor_id`)VALUES('$fname','#0071c5','$start_time','$end_time',2)";
-
+$qq = "select InstructorID from professionals where username = '$instructor'";
+$rr = mysqli_query($conn,$qq);
+$rw=mysqli_fetch_array($rr);
+$query1="INSERT INTO events (`title`, `color`, `start`, `end`, `instructor_id`)VALUES('$fname','#0071c5','$start_time','$end_time','$rw[0]')";
 if(! $conn ) {
     die("Connection failed: " . $conn->connect_error);
 }

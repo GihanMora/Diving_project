@@ -203,7 +203,7 @@ $events = $req->fetchAll();
 	<!-- FullCalendar -->
 	<script src='../calender/js/moment.min.js'></script>
 	<script src='../calender/js/fullcalendar.min.js'></script>
-	
+<?php $today=date('Y-m-d');?>
 	<script>
 
 	$(document).ready(function() {
@@ -214,7 +214,7 @@ $events = $req->fetchAll();
 				center: 'title',
 				right: 'month,basicWeek,basicDay'
 			},
-			defaultDate: '2016-01-12',
+			defaultDate: '<?php echo $today?>',
 			editable: false,
 			eventLimit: true, // allow "more" link when too many events
 			selectable: false,

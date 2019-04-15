@@ -61,7 +61,7 @@ $instructor_uname = $_SESSION['name'];
                 <img src="../images/user.png"  class="avatar  img-thumbnail" id="img" alt="avatar">
 <!--                <img src=--><?php //echo $src; ?><!-- class="avatar img-circle img-thumbnail" alt="avatar">-->
                 <div style="font-weight: bold;padding-top: 15px">Upload your Image here</div>
-                <input requiredtype="file" name="img" class="text-center center-block file-upload">
+                <input required type="file" name="img" class="text-center center-block file-upload">
             </div></br><br>
 
         </div><!--/col-3-->

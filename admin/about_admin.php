@@ -124,7 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<h5>1 .</h5>
 										</div>
 										<div class="active-right">
-											<a href=""><h5>Hikkaduwa Diving Centre</h5></a>
+											<a href="../hikka.php"><h5>Hikkaduwa Diving Centre</h5></a>
 											<p></p>
 										</div>
 										<div class="clearfix"></div>
@@ -170,7 +170,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			        <div class="content">
 					<div class="gallery">
 						<div class="container">
-                        <h3 style="font-family: 'Contrail One', cursive; ont-size: 5em;">Gallery</h3>
+                            <div class="col-md-12 aboutbottom-grid1">
+
+                                <h3 style="font-family: 'Contrail One', cursive; ont-size: 5em;">Gallery</h3></div>
 						<span></span>
 						<div class="gallery-grids">
 								<div class="col-md-3 gallery-grid gallery1">

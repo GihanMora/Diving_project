@@ -84,6 +84,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-sm-12" style="font-size: 20px"><?php echo $row['Nationality'];?></div>
                 <div class="col-sm-12">Awards</div>
                 <div class="col-sm-12" style="font-size: 20px"><?php echo $row['Awards'];?></div>
+                <script type="text/javascript">
+                    // Popup window code
+                    function newPopup(url) {
+                        popupWindow = window.open(
+                            url,'popUpWindow','height=600,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+                    }
+                </script>
+                <?php $uname = $row['username'] ?>
+                <p style="text-align: center"><a href="JavaScript:newPopup('../availability_calender.php?name=<?php echo $uname?>');"><button class="btn">Show Availability Calender</button></a></p>
 
             </div>
 

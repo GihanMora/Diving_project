@@ -78,24 +78,38 @@
 
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" for="textinput">Booking Date</label>
+                    <div class="col-md-6">
+                        <input required id="date" name="date" type="date" placeholder="time" class="form-control input-md">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sess" class="col-md-6 control-label">Select Session</label>
+                    <div class="col-md-6">
+                        <label class="radio-inline"><input type="radio" value="morning" onclick="handleClick(this);" id="morning" name="optradio" >Morning Session</label>
+                        <label class="radio-inline"><input type="radio" value="evening" onclick="handleClick(this);" id="evening"  name="optradio">Evening Session</label>
+                    </div>
+                </div>
+
             <div class="form-group">
                 <label class="col-md-6 control-label" for="textinput">Booking Start Time</label>
                 <div class="col-md-6">
-                    <input required id="textinput" name="start_time" type="datetime-local" placeholder="time" class="form-control input-md">
+                    <input readonly id="start_time" name="start_time" type="datetime-local" placeholder="time" class="form-control input-md">
 
                 </div>
             </div>
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="textinput">Booking End Time</label>
                     <div class="col-md-6">
-                        <input required id="textinput" name="end_time" type="datetime-local" placeholder="time" class="form-control input-md">
-
+                        <input readonly  id="end_time" name="end_time" type="datetime-local" placeholder="time" class="form-control input-md">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="Country">Course Name</label>
                     <div class="col-md-6">
-                        <select required id="course" name="course" class="form-control" >
+                        <select onchange="feee(this.value);"  required id="course" name="course" class="form-control" >
                         <option value="PADI Scuba Diver Course">PADI Scuba Diver Course</option>
                         <option value="Open Water Diver Course">Open Water Diver Course</option>
                         <option value="Advanced Open Water Diver Courses">Advanced Open Water Diver Courses</option>
@@ -109,15 +123,15 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="textinput">Number of Students</label>
                     <div class="col-md-6">
-                        <input required id="textinput" name="numstu" type="text" placeholder="No of Students" class="form-control input-md">
+                        <input onchange="feee(this.value);" required id="stu" name="numstu" type="text" placeholder="No of Students" class="form-control input-md">
 
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-6 control-label" for="textinput">Course Fee</label>
+                    <label class="col-md-6 control-label" for="textinput">Course Fee($)</label>
                     <div class="col-md-6">
-                        <input required id="textinput" name="fee" type="text" placeholder="" class="form-control input-md" value="" >
+                        <input  readonly id="fee" name="fee" type="text" placeholder="" class="form-control input-md" value="" >
 
                     </div>
                     <div id="fee"></div>
@@ -132,6 +146,63 @@
                 </div>
 
             </form>
+            <script>
+                var currentValue = 0;
+                function handleClick(myRadio) {
+                    currentValue = myRadio.value;
+
+                    var dt = document.getElementById('date').value;
+
+                    if(currentValue =="morning"){
+                        time_start = dt+' 08:00:00';
+                        time_end = dt+' 11:00:00';
+
+                    }
+                    if(currentValue =='evening'){
+                        time_start = dt+' 1:00 PM';
+                        time_end = dt+' 4:00 PM';
+                    }
+
+                    var d1 = moment(time_start).format("YYYY-MM-DDThh:mm");
+                    var d2 = moment(time_end).format("YYYY-MM-DDThh:mm");
+                    document.getElementById('start_time').setAttribute('value',d1);
+                    document.getElementById('end_time').setAttribute('value',d2);
+                    document.getElementById('e_t').innerHTML = d2;
+
+                }
+                function feee(vl) {
+                    if(document.getElementById('course').value && document.getElementById('stu').value){
+                        var cc = document.getElementById('course').value;
+                        var stu_c = document.getElementById('stu').value;
+                        var ff = document.getElementById('fee');
+                        if(cc=="PADI Scuba Diver Course"){
+                            ff.setAttribute('value',280*stu_c);
+
+                        }
+                        if(cc=="Open Water Diver Course"){
+                            ff.setAttribute('value',375*stu_c);
+
+                        }
+                        if(cc=="Advanced Open Water Diver Courses"){
+                            ff.setAttribute('value',330*stu_c);
+
+                        }
+                        if(cc=="Master Scuba Diver Courses"){
+                            ff.setAttribute('value',250*stu_c);
+
+                        }
+                        if(cc=="Discover Scuba Diving"){
+                            ff.setAttribute('value',50*stu_c);
+
+                        }
+                        if(cc=="PADI Seal Team (8+)"){
+                            ff.setAttribute('value',40*stu_c);
+
+                        }
+                    }
+
+                }
+            </script>
         </div>
         <div class="col-lg-6" >
             <h2 align="center"><?php echo $_GET['val']?>'s Availability Calendar</h2>
@@ -178,6 +249,7 @@
                                 <input type="text" name="start" class="form-control" id="start" readonly>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="end" class="col-sm-2 control-label">End date</label>
                             <div class="col-sm-10">
