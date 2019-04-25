@@ -163,8 +163,8 @@
                         time_end = dt+' 4:00 PM';
                     }
 
-                    var d1 = moment(time_start).format("YYYY-MM-DDThh:mm");
-                    var d2 = moment(time_end).format("YYYY-MM-DDThh:mm");
+                    var d1 = moment(time_start).format("YYYY-MM-DDTHH:mm");
+                    var d2 = moment(time_end).format("YYYY-MM-DDTHH:mm");
                     document.getElementById('start_time').setAttribute('value',d1);
                     document.getElementById('end_time').setAttribute('value',d2);
                     document.getElementById('e_t').innerHTML = d2;
